@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>{% block title %}{{ journal.general.journal_name }}{% endblock title %}</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static "css/materialize.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static "css/style.css" %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  
+{% include "nav.html" %}
+
+  <div class="section no-pad-bot page-flexbox-wrapper" id="index-banner">
+    <div class="container">
+    {% block body %}
+
+    {% endblock body %}
+    </div>
+  </div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static "js/bin/materialize.js" %}"></script>
+  <script src="{% static "js/init.js" %}"></script>
+  <script src="{% static "js/holder.js" %}"></script>
+  {% if messages %}
+    <script type="text/javascript">
+    {% for message in messages %}
+    Materialize.toast('{{ message }}', 4000)
+    {% endfor %}
+    </script>
+  {% endif %}
+  </body>
+</html>

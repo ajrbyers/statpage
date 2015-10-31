@@ -55,3 +55,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# App Stuff
+src/core/settings.py
+src/db.sqlite3

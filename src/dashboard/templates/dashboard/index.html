@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h4>StatPage Dashboard</h4>
+<ul class="collection with-header">
+	<li class="collection-header"><h4>System Status</h4></li>
+	{% for system in systems %}
+	<li class="collection-item"><div>{{ system.name }}<i class="secondary-content">{% if system.open_incidents %}{{ system.open_incidents.0.get_status_display }}{% else %}Operational{% endif %}</i></div></li>
+	{% endfor %}
+</ul>
+
+{% if current_incidents %}
+<h4>Current Incidents </h4>
+{% for incident in current_incidents %}
+	<div class="card">
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{ incident.system.name }}<i class="right">{{ incident.started }}</i></span>
+      <p>{{ incident.system.name }} is currently experiencing an {{ incident.get_status_display }}.</p>
+      <br />
+      <span class="card-title activator grey-text text-darken-4">Notes</span>
+      {% for note in incident.notes.all %}<p>{{ note.text }}</p><p class="small">{{ note.posted }}</p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
+    </div>
+  </div>
+{% endfor %}
+{% endif %}
+
+{% if past_incidents %}
+<h4>Past Incidents</h4>
+{% for incident in past_incidents %}
+	<div class="card">
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{ incident.system.name }}<i class="right">{{ incident.started }}</i></span>
+      <p>{{ incident.system.name }} is currently experiencing an {{ incident.get_status_display }}.</p>
+      <br />
+      <span class="card-title activator grey-text text-darken-4">Notes</span>
+      {% for note in incident.notes.all %}<p>{{ note.text }}</p><p class="small">{{ note.posted }}</p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
+    </div>
+  </div>
+{% endfor %}
+{% endif %}
+
+{% endblock body %}

@@ -1,0 +1,45 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.page-flexbox-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+ #main {
+    flex: 1 0 auto;
+  }
+
+
+.input-field label {
+    left: 0.0rem;
+}
+
+input:-webkit-autofill {
+    color: #fff !important;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+nav .brand-logo {
+  padding-top: 10px;
+}
+
+hr {
+  border-top: 1px solid #eee;
+}
