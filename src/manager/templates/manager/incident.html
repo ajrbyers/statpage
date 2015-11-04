@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load materialize %}
+
+{% block body %}
+  <div class="row">
+    <form class="col s12" method="POST">
+    {% csrf_token %}
+      <div class="row">
+    	<div class="col s12">
+    		<div class="card-panel">
+    			<h4>New System</h4>
+			        <div class="input-field col s4">
+			        {{ form.system.label }}
+			        {{ form.system }}
+			        </div>
+			        <div class="input-field col s4">
+			        {{ form.status.label }}
+			        {{ form.status }}
+			        </div>
+			        <div class="input-field col s4">
+			        {{ form.started.label }}
+			        <input id="id_started" name="started" type="date" class="date">
+			        </div>
+			        <div class="input-field col s12">
+			        Note
+			        <textarea class="validate materialize-textarea" cols="40" id="id_note" name="note" rows="10"></textarea>
+			        </div>
+		        <br /><br />
+		        <button class="waves-effect waves-light btn" type="submit">Submit</button>
+		        <a class="waves-effect waves-light btn red darken-3" href="{% url 'manager_index' %}">Cancel</a>
+		      </div>
+		    </div>
+	    </div>
+    </form>
+  </div>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('select').material_select();
+});
+</script>
+{% endblock extrajs %}

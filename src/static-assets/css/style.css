@@ -24,10 +24,6 @@
   }
 
 
-.input-field label {
-    left: 0.0rem;
-}
-
 input:-webkit-autofill {
     color: #fff !important;
 }

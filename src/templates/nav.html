@@ -2,7 +2,10 @@
 
   <ul id="dropdown1" class="dropdown-content">
     <li><a href="{% url 'dashboard_index' %}">Dashboard</a></li>
-    {% if user.is_staff %}<li><a href="{% url 'manager_index' %}">Manager</a></li>{% endif %}
+    {% if user.is_staff %}
+      <li><a href="{% url 'manager_index' %}">Manager</a></li>
+      <li><a href="/admin/">Admin</a></li>
+    {% endif %}
     <li class="divider"></li>
     <li><a href="{% url 'logout' %}">Logout</a></li>
   </ul> 
