@@ -15,6 +15,7 @@
       <img src="/static/img/logo.png">
     </a>
       <ul class="right hide-on-med-and-down">
+      <li><a href="{% url 'new_subscriber' %}">Subscribe</a></li>
       {% if user.is_authenticated %}
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Hello, {{ user.first_name }}<i class="material-icons right">arrow_drop_down</i></a></li>
       {% else %}

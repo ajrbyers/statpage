@@ -15,10 +15,15 @@ class IncidentAdmin(admin.ModelAdmin):
 	list_display = ('system', 'status', 'started', 'closed', 'user')
 	list_filter = ('system', 'status', 'user')
 
+class SubscriberAdmin(admin.ModelAdmin):
+	list_display = ('first_name', 'last_name', 'email_address')
+	list_filter = ('first_name', 'last_name', 'email_address')
+
 admin_list = [
 	(System, SystemAdmin),
 	(Note, NoteAdmin),
 	(Incident, IncidentAdmin),
+	(Subscriber, SubscriberAdmin),
 ]
 
 [admin.site.register(*t) for t in admin_list]

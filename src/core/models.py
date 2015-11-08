@@ -43,3 +43,14 @@ class Incident(models.Model):
 
 	def __unicode__(self):
 		return u'%s %s' % (self.system.name, self.status)
+
+
+class Subscriber(models.Model):
+	email_address = models.EmailField(unique=True)
+	first_name = models.CharField(max_length=200)
+	last_name = models.CharField(max_length=200)
+	confirmation_code = models.CharField(max_length=200, null=True, blank=True)
+	confirmed = models.BooleanField(default=False)
+
+	def __unicode__(self):
+		return u'%s %s' % (self.first_name, self.last_name)

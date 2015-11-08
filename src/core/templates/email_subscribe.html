@@ -1,0 +1,9 @@
+<p>Dear {{ subscriber.first_name }} {{ subscriber.last_name }},</p>
+
+<p>This email is to confirm your subscription to {{ settings.SITE_NAME }} at {{ settings.BASE_URL }}. If you did not make this request, you do not need to take any action, or you can let us know <a href="{{ decline_url }}">{{ decline_url }}</a> and we will remove this record.</p>
+
+<p>If you did request a subscription you can approve it here: <a href="{{ accept_url }}">{{ accept_url }}</a>.</p>
+
+<p>Regards,<br />
+
+{{ settings.FROM_NAME }}</p>
