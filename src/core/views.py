@@ -17,8 +17,6 @@ def login(request):
 		user = request.POST.get('username')
 		pawd = request.POST.get('password')
 
-		print user, pawd
-
 		user = authenticate(username=user, password=pawd)
 
 		if user is not None:

@@ -34,7 +34,7 @@ class Incident(models.Model):
 	status = models.CharField(max_length=100, choices=status_choices())
 	notes = models.ManyToManyField(Note)
 
-	started = models.DateTimeField()
+	started = models.DateTimeField(null=True, blank=True)
 	closed = models.DateTimeField(null=True, blank=True)
 	user = models.ForeignKey(User)
 

@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils import timezone
 
 from core import models
 from manager import forms
 
+@staff_member_required
 def index(request):
 	
 	template = 'manager/index.html'
@@ -15,6 +18,7 @@ def index(request):
 	}
 	return render(request, template, context)
 
+@staff_member_required
 def system(request, system_id=None):
 
 	if system_id:
@@ -45,6 +49,7 @@ def system(request, system_id=None):
 	}
 	return render(request, template, context)
 
+@staff_member_required
 def incident(request, incident_id=None):
 
 	if incident_id:
@@ -72,6 +77,8 @@ def incident(request, incident_id=None):
 					new_note = models.Note(text=note)
 					new_note.save()
 					saved_incident.notes.add(new_note)
+					saved_incident.started = timezone.now()
+					saved_incident.save()
 
 				message = 'Incident created.'
 
@@ -80,6 +87,52 @@ def incident(request, incident_id=None):
 
 	template = 'manager/incident.html'
 	context = {
+		'form': form,
+	}
+	return render(request, template, context)
+
+@staff_member_required
+def add_new_note(request, incident_id):
+	incident = get_object_or_404(models.Incident, pk=incident_id)
+	form = forms.Note()
+
+	if request.POST:
+		form = forms.Note(request.POST)
+
+		if form.is_valid():
+			new_note = form.save()
+			incident.notes.add(new_note)
+
+			messages.add_message(request, messages.SUCCESS, 'Note added to incident')
+			return redirect(reverse('manager_index'))
+
+	template = 'manager/note.html'
+	context = {
+		'incident': incident,
+		'form': form,
+	}
+	return render(request, template, context)
+
+@staff_member_required
+def close_incident(request, incident_id):
+	incident = get_object_or_404(models.Incident, pk=incident_id)
+	form = forms.Note()
+
+	if request.POST:
+		form = forms.Note(request.POST)
+
+		if form.is_valid():
+			new_note = form.save()
+			incident.notes.add(new_note)
+			incident.closed = timezone.now()
+			incident.save()
+
+			messages.add_message(request, messages.SUCCESS, 'Note added to incident')
+			return redirect(reverse('manager_index'))
+
+	template = 'manager/close_incident.html'
+	context = {
+		'incident': incident,
 		'form': form,
 	}
 	return render(request, template, context)

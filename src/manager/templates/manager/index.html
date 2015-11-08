@@ -24,7 +24,8 @@
       <p>{{ incident.system.name }} is currently experiencing an {{ incident.get_status_display }}.</p>
       <br />
       <span class="card-title activator grey-text text-darken-4">Notes</span>
-      {% for note in incident.notes.all %}<p>{{ note.text }}</p><p class="right-align">{{ note.posted }}</p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
+      {% for note in incident.notes.all %}<p>{{ note.text|linebreaksbr|safe }}</p><p class="right-align">{{ note.posted }}<i class="fa fa-trash"></i></p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
+      <a href="{% url 'add_new_note' incident.id %}" class="waves-effect waves-light btn">Add New Note</a>&nbsp;<a href="{% url 'close_incident' incident.id %}" class="waves-effect waves-light btn red darken-4">Close Incident</a>
     </div>
   </div>
 {% endfor %}
@@ -39,7 +40,7 @@
       <p>{{ incident.system.name }} is currently experiencing an {{ incident.get_status_display }}.</p>
       <br />
       <span class="card-title activator grey-text text-darken-4">Notes</span>
-      {% for note in incident.notes.all %}<p>{{ note.text }}</p><p class="right-align">{{ note.posted }}</p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
+      {% for note in incident.notes.all %}<p>{{ note.text|linebreaksbr|safe }}</p><p class="right-align">{{ note.posted }}</p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
     </div>
   </div>
 {% endfor %}

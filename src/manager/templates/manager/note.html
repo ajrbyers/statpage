@@ -8,18 +8,10 @@
       <div class="row">
     	<div class="col s12">
     		<div class="card-panel">
-    			<h4>New System</h4>
-			        <div class="input-field col s6">
-			        {{ form.system.label }}
-			        {{ form.system }}
-			        </div>
-			        <div class="input-field col s6">
-			        {{ form.status.label }}
-			        {{ form.status }}
-			        </div>
+    			<h4>New Note for {{ incident.system.name }} Incident</h4>
 			        <div class="input-field col s12">
-			        Note
-			        <textarea class="validate materialize-textarea" cols="40" id="id_note" name="note" rows="10"></textarea>
+			        Note Text
+			        <textarea class="validate materialize-textarea" cols="40" id="id_text" name="text" rows="10"></textarea>
 			        </div>
 		        <br /><br />
 		        <button class="waves-effect waves-light btn" type="submit">Submit</button>

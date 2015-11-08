@@ -11,4 +11,10 @@ class Incident(forms.ModelForm):
 
 	class Meta:
 		model = models.Incident
-		exclude = ('notes', 'user')
+		exclude = ('notes', 'user', 'started', 'closed')
+
+class Note(forms.ModelForm):
+
+	class Meta:
+		model = models.Note
+		fields = ('text',)
