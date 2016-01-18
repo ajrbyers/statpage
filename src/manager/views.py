@@ -26,6 +26,7 @@ def system(request, system_id=None):
 		form = forms.NewSystem(instance=system)
 	else:
 		form = forms.NewSystem()
+		system = None
 
 	if request.POST:
 		if system:
