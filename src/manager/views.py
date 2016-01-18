@@ -57,6 +57,7 @@ def incident(request, incident_id=None):
 		incident = get_object_or_404(models.Incident, pk=incident_id)
 		form = forms.Incident(instance=incident)
 	else:
+		incident = None
 		form = forms.Incident()
 
 	if request.POST:
