@@ -6,6 +6,7 @@ def status_choices():
 		('operational', 'Operational'),
 		('partial_outage', 'Partial Outage'),
 		('major_outage', 'Major Outage'),
+		('scheduled_release','Scheduled Release'),
 	)
 
 class System(models.Model):
