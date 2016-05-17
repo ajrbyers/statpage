@@ -33,7 +33,7 @@
       <p>{{ incident.system.name }} is currently experiencing an {{ incident.get_status_display }}.</p>
       <br />
       <span class="card-title activator grey-text text-darken-4">Notes</span>
-      {% for note in incident.notes.all %}<p>{{ note.text }}</p><p class="right-align">{{ note.posted }}</p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
+      {% for note in incident.notes.all %}<p>{{ note.text|safe }}</p><p class="right-align">{{ note.posted }}</p>{% if not forloop.last %}<hr />{% endif %}{% endfor %}
     </div>
   </div>
 {% endfor %}
